@@ -7,6 +7,8 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Routing\Router;
+use App\Models\User;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -47,6 +49,18 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        $router = app('router');
+        parent::boot($router);
+
+        $router->bind( 'username', function ( $username ) {
+            return User::where( 'username', $username )->firstOrFail( );
+        });
+        $router->bind( 'user_id', function ( $user_id ) {
+            $user = User::where( 'id', $user_id )->firstOrFail();
+            return $user->id;
+        });
+
     }
 
     /**
