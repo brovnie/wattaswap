@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Model\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,5 +22,16 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
+
+/* Profile */
+Route::get('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
+Route::get('/profiles/{username}/create', [App\Http\Controllers\ProfilesController::class, 'create'])->name('profile.create');
+Route::patch('/profiles/{username}/create', [App\Http\Controllers\ProfilesController::class, 'store'])->name('profile.store');
+
+
+/* Product */
+
+/* Chat */ 
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
