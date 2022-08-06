@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
@@ -49,11 +52,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255'],
+        $validator = Validator::make($data, [
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        Session::reflash();
+        Session::flash('register_validation_form', 'true');
+
+        return $validator;
     }
 
     /**
@@ -64,10 +71,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'username' => $data['username'],
             'email' => $data['email'],
+            'new_user' => true,
             'password' => Hash::make($data['password']),
         ]);
+        Profile::create(['user_id' => $user->id]);
+        
+        return $user;
+
     }
+    protected function registered(Request $request, $user)
+    {
+        return redirect(route('profile.create', $user->username));
+    }
+
 }

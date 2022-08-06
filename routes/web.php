@@ -18,9 +18,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+/*
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+*/
 Auth::routes();
 
 /* Profile */
@@ -34,4 +34,3 @@ Route::patch('/profiles/{username}/create', [App\Http\Controllers\ProfilesContro
 /* Chat */ 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
