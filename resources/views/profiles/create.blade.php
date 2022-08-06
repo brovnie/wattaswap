@@ -1,8 +1,10 @@
+@extends('layouts.app')
+
 @section('content')
 <div class="createStepOne flex-1 createProfile">
 <div class="relative md:hidden hero-background"><img src="/storage/home/hero_bg.svg" class="hero-img "> <div class="img-wrapper md:hidden"><img src="/storage/logo/Logo_vertical_white.svg" class="img"></div></div>
 <div class="container mx-auto md:mb-10 md:mt-10">
-<form method="post" action='/profiles/{{$user->username}}/create-step-one' class=" border-xl auth-card card-shadow">
+<form method="post" action='/profiles/{{$user->username}}/create' class=" border-xl auth-card card-shadow">
         @csrf
         @method('PATCH')
         <div class="card-header font-proximanova text-center">{{ __('Over jou') }}</div>

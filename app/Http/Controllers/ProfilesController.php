@@ -37,10 +37,7 @@ class ProfilesController extends Controller
 
         $username->profile->update( $data );
 
-        return redirect()->route('welcome', [ 
-            'user' => $username,
-        'username' => $username->username,
-    'message' => 'Welcome new user' ]);
+        return redirect()->route('index');
     }
 
 }
