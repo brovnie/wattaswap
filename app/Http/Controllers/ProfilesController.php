@@ -36,7 +36,7 @@ class ProfilesController extends Controller
         ]);
 
         $username->profile->update( $data );
-
+        session()->flash('status', 'You have Successfully Registered'); 
         return redirect()->route('index');
     }
 
