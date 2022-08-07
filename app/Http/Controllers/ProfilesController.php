@@ -45,14 +45,14 @@ class ProfilesController extends Controller
             $imageArray = ['profil_image' => $imagePath];
         }
 
-        $disableCreate = array('new_user' => 0);
-
         $username->profile->update(array_merge(
             $data,
             $imageArray ?? [],
-            $disableCreate
         ));
         
+        $username->update([
+            'new_user' => 0
+        ]);
         
         session()->flash('alert-message', 'U bent succesvol geregistreerd.');
         session()->flash('alert-status', 'success');
