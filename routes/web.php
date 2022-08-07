@@ -23,14 +23,24 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 Auth::routes();
 
-/* Profile */
+/**
+ *  Profile 
+*/
 Route::get('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
 Route::get('/profiles/{username}/create', [App\Http\Controllers\ProfilesController::class, 'create'])->name('profile.create');
 Route::patch('/profiles/{username}/create', [App\Http\Controllers\ProfilesController::class, 'store'])->name('profile.store');
 
 
-/* Product */
+/**
+ *  Product 
+*/
 
-/* Chat */ 
+/**
+ *  Chat 
+*/ 
 
 
+/**
+ *  Apis 
+*/
+Route::get('/api/v1/cities', [App\Http\Controllers\APIs\CitiesApiController::class, 'getCity']);
