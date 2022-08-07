@@ -10903,3 +10903,8 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+/*special classes*/
+.hide {
+  opacity: 0;
+  transform: opacity 300ms;
+}

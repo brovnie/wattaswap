@@ -36,7 +36,9 @@ class ProfilesController extends Controller
         ]);
 
         $username->profile->update( $data );
-        session()->flash('status', 'You have Successfully Registered'); 
+        session()->flash('alert-message', 'U bent succesvol geregistreerd.');
+        session()->flash('alert-status', 'success');
+        
         return redirect()->route('index');
     }
 
