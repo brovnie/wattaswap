@@ -10906,5 +10906,5 @@ textarea.form-control-lg {
 /*special classes*/
 .hide {
   opacity: 0;
-  transform: opacity 300ms;
+  transform: opacity 500ms;
 }
