@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="create-profile">
-<form method="post" action='/profiles/{{$user->username}}/create' class=" border-xl auth-card card-shadow">
+<form method="post" action="/profiles/{{$user->username}}/create" enctype="multipart/form-data" class=" border-xl auth-card card-shadow">
         @csrf
         @method('PATCH')
         <div class="card-header font-proximanova text-center">{{ __('Over jou') }}</div>

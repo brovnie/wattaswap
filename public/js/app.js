@@ -28116,23 +28116,16 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "text-center" }, [
     _c("label", { staticClass: "relative inline-block mx-auto" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "img-wrapper profile-img--xl mx-auto mb-5 border-4 border-primary",
-        },
-        [
-          _vm.url
-            ? _c("img", {
-                staticClass: "img",
-                attrs: { alt: "profile avatar", src: _vm.url },
-              })
-            : _vm._e(),
-        ]
-      ),
+      _c("div", { staticClass: "img-wrapper" }, [
+        _vm.url
+          ? _c("img", {
+              staticClass: "img--absolute",
+              attrs: { alt: "profile avatar", src: _vm.url },
+            })
+          : _vm._e(),
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "edit-icon flex items-center justify-center" }, [
+      _c("div", { staticClass: "edit-icon" }, [
         _c(
           "svg",
           {
@@ -28154,7 +28147,6 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("input", {
-        staticClass: "absolute top-O left-0 w-full h-full opacity-0 z-10",
         attrs: { type: "file", id: "profil_image", name: "profil_image" },
         on: { change: _vm.onImageChange },
       }),
