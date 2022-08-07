@@ -47,20 +47,30 @@
     <div class="mt-5">
         <label for="gender">{{__('Geslacht')}}</label>
         <select id="gender" name="gender">
+            <label for=""></label>
+            <input type="radio" name="gender" id="" value="m">
             <option value="m">{{__('Man')}}</option>
             <option value="v">{{__('Vrouw')}}</option>
             <option value="x">{{__('Andere')}}</option>
         </select>
     </div>  
-  
-    <div class="mt-5"> 
-        <label for="location">{{__('Locatie')}}</label>
-        <select id="location" name="location">
-            <option disabled value="">Kies een stad</option>
-            <option value="Mechelen">{{__('Mechelen')}}</option>
-            <option value="Aalst">{{__('Aalst')}}</option>
-        </select>
+    
+    <p>{{__('Geslacht')}}<p>
+    <div>
+        <div>
+            <label for="man">{{__('Man')}}</label>
+            <input type="radio" name="gender" id="man" value="m">
+        </div>
+        <div>
+            <label for="vrouw">{{__('Vrouw')}}</label>
+            <input type="radio" name="gender" id="vrouw" value="m">
+        </div>
+        <div>
+            <label for="andere">{{__('Andere')}}</label>
+            <input type="radio" name="gender" id="andere" value="m">
+        </div>
     </div>
+    <input-location></input-location>
  
 
     <button type="submit" name="over" class="mt-5 btn btn--inline btn--orange w-auto ">{{__('Volgende')}}</button>
