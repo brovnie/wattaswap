@@ -14,18 +14,16 @@ class ProfilesController extends Controller
         return view('profiles.index',['user' => $user]);
     }
 
-    /*
-    **
-    ** Create Profile
+    /**
+    *
+    * Create Profile
     */
-
     public function create( $username ) {
         $this->authorize('create', $username->profile);
         return view('profiles.create', [ 'user' => $username ]);    
     }
 
     public function store( $username, Request $request ) {
-        
         $this->authorize('create', $username->profile);
 
         $data = request()->validate([
@@ -43,7 +41,7 @@ class ProfilesController extends Controller
             $image->save();
 
             $imageArray = ['profil_image' => $imagePath];
-        }
+        };
 
         $username->profile->update(array_merge(
             $data,
@@ -56,8 +54,6 @@ class ProfilesController extends Controller
         
         session()->flash('alert-message', 'U bent succesvol geregistreerd.');
         session()->flash('alert-status', 'success');
-        
-
 
         return redirect()->route('index');
     }

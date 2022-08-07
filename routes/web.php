@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Profile;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +36,8 @@ Route::patch('/profiles/{username}/create', [App\Http\Controllers\ProfilesContro
 /**
  *  Product 
 */
+Route::get('/products/{product_id}', [App\Http\Controllers\ProductsController::class, 'index'])->name('product.show');
+Route::get('/products/create', [App\Http\Controllers\ProductsController::class, 'create'])->name('product.create');
 
 /**
  *  Chat 

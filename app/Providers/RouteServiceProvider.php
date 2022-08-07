@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -61,6 +62,12 @@ class RouteServiceProvider extends ServiceProvider
             $user = User::where( 'id', $user_id )->firstOrFail();
             return $user->id;
         });
+
+        $router->bind( 'product_id', function ( $product_id ) {
+            $product = Product::where( 'id', $product_id )->firstOrFail();
+            return $product->id;
+        });
+
 
     }
 

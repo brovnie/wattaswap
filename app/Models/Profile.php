@@ -30,10 +30,12 @@ class Profile extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-        
+    
     /**
-    * Get username
+    * 
+    * Custom methods
     */
+
     public function getUsername()
     {
         return $this->user()->get()[0]->username;

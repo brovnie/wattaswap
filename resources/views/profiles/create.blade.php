@@ -17,8 +17,7 @@
 @endif
 
     <div class="mt-5">
-        test
-    <profil-image></profil-image>
+        <profil-image></profil-image>
         <label class="text-bold" for="name">{{__('Voornaam')}}</label>
         <input 
             type="text" 
@@ -44,17 +43,6 @@
             id="birthdate"
             class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}">
     </div>
-    <div class="mt-5">
-        <label for="gender">{{__('Geslacht')}}</label>
-        <select id="gender" name="gender">
-            <label for=""></label>
-            <input type="radio" name="gender" id="" value="m">
-            <option value="m">{{__('Man')}}</option>
-            <option value="v">{{__('Vrouw')}}</option>
-            <option value="x">{{__('Andere')}}</option>
-        </select>
-    </div>  
-    
     <p>{{__('Geslacht')}}<p>
     <div>
         <div>
@@ -71,9 +59,7 @@
         </div>
     </div>
     <input-location></input-location>
- 
-
-    <button type="submit" name="over" class="mt-5 btn btn--inline btn--orange w-auto ">{{__('Volgende')}}</button>
+    <button type="submit" name="over" class="mt-5 btn btn--inline btn--orange w-auto ">{{__('Inschrijven')}}</button>
 </form>
 </div>
 </div>
