@@ -26,7 +26,7 @@ class Product extends Model
     ];
 
     /**
-    * Connect with Profile
+    * Connections
     */
     public function profile(){
         return $this->belongsTo(Profile::class);
@@ -35,4 +35,9 @@ class Product extends Model
     public function images(){
         return $this->hasMany(Image::class);
     }
+    
+    /**
+    * Custom functions
+    */
+
 }

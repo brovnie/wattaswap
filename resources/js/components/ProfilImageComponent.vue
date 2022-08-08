@@ -13,6 +13,7 @@
           type="file" 
           id="profil_image" 
           name="profil_image" 
+          accept="image/*"
           @change="onImageChange"
           class="">
       </label>
