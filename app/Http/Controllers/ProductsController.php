@@ -27,6 +27,38 @@ class ProductsController extends Controller
         return view('products.create');      
     }
 
+    public function store( Request $request ) {
+
+        $data = request()->validate([
+            'title' => 'required|max:255',
+            'description' => 'required|max:255',
+            'location' => 'required',
+            'price' => 'required',
+        ]);
+
+        if (request('profil_image')) {
+            $imagePath = $request->file('profil_image')->store('profiles','public');
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(150, 150);
+            $image->save();
+
+            $imageArray = ['profil_image' => $imagePath];
+        };
+
+        $username->profile->update(array_merge(
+            $data,
+            $imageArray ?? [],
+        ));
+        
+        $username->update([
+            'new_user' => 0
+        ]);
+        
+        session()->flash('alert-message', 'U bent succesvol geregistreerd.');
+        session()->flash('alert-status', 'success');
+
+        return redirect()->route('index');
+    }
+
     /**
      * 
      * Edit product

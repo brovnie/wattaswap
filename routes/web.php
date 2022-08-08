@@ -36,9 +36,9 @@ Route::patch('/profiles/{username}/create', [App\Http\Controllers\ProfilesContro
 /**
  *  Product 
 */
-Route::get('/products/{product_id}', [App\Http\Controllers\ProductsController::class, 'index'])->name('product.show');
 Route::get('/products/create', [App\Http\Controllers\ProductsController::class, 'create'])->name('product.create');
 Route::patch('/products/create', [App\Http\Controllers\ProductsController::class, 'store'])->name('product.store');
+Route::get('/products/{product_id}', [App\Http\Controllers\ProductsController::class, 'index'])->name('product.show');
 
 /**
  *  Chat 
