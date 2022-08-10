@@ -18,7 +18,7 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignIdFor(Product::class);
-            $table->string('image');
+            $table->string('name');
         });
     }
 

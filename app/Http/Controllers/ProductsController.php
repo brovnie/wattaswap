@@ -55,9 +55,20 @@ class ProductsController extends Controller
         ]);*/
         
         $product = Product::create($data); 
-        $message = 'Product is toegevoegd. Bekijk je product <a href=products/' . $product->id . '> Hier </a>';
-        
 
+
+        foreach($request->media as $image){     
+            $from = public_path('tmp/uploads/'.$image);
+            $imagePath = $request->file('product_image')->store('profiles','public');
+            $to = public_path("storage/{$imagePath}")->fit(500, 500);
+        
+            File::move($from, $to);
+            $post->images()->create([
+              'name' => $image,
+            ]);
+          }
+
+        $message = 'Product is toegevoegd. Bekijk je product <a href=products/' . $product->id . '> Hier </a>';
         session()->flash('alert-message', $message);
         session()->flash('alert-status', 'success');
 
