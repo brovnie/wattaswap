@@ -17,16 +17,16 @@ class Product extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
         'title',
         'description',
         'price',
+        'category_id',
         'location',
         'sold',
     ];
 
     /**
-    * Connections
+    * Relations
     */
     public function profile(){
         return $this->belongsTo(Profile::class);
@@ -35,7 +35,12 @@ class Product extends Model
     public function images(){
         return $this->hasMany(Image::class);
     }
-    
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     /**
     * Custom functions
     */

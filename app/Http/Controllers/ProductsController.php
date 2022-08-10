@@ -34,27 +34,31 @@ class ProductsController extends Controller
             'description' => 'required|max:255',
             'location' => 'required',
             'price' => 'required',
+            'category_id' => 'required',
         ]);
 
-        if (request('profil_image')) {
+        /*if (request('profil_image')) {
             $imagePath = $request->file('profil_image')->store('profiles','public');
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(150, 150);
             $image->save();
 
             $imageArray = ['profil_image' => $imagePath];
-        };
+        };*/
 
-        $username->profile->update(array_merge(
+      /*  $username->profile->update(array_merge(
             $data,
             $imageArray ?? [],
         ));
         
         $username->update([
             'new_user' => 0
-        ]);
+        ]);*/
         
-        session()->flash('alert-message', 'U bent succesvol geregistreerd.');
+        Product::create($data); 
+
+        session()->flash('alert-message', '<strong> Product is toegevoegd </strong>.');
         session()->flash('alert-status', 'success');
+
 
         return redirect()->route('index');
     }

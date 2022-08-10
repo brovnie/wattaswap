@@ -19,8 +19,10 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->decimal('price',8,2);
             $table->string('location');
+            $table->integer("category_id");
             $table->boolean('sold')->default(false);
             $table->timestamps();
+
         });
     }
 
