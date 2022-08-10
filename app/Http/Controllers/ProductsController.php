@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use File;
 
 class ProductsController extends Controller
 {
@@ -58,12 +59,11 @@ class ProductsController extends Controller
 
 
         foreach($request->media as $image){     
-            $from = public_path('tmp/uploads/'.$image);
-            $imagePath = $request->file('product_image')->store('profiles','public');
-            $to = public_path("storage/{$imagePath}")->fit(500, 500);
+            $from = public_path('storage/tmp/uploads/'.$image);
+            $to = public_path('storage/product_images/'.$image);
         
             File::move($from, $to);
-            $post->images()->create([
+            $product->images()->create([
               'name' => $image,
             ]);
           }
