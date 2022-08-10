@@ -35,10 +35,12 @@
                     multiple
                 >
     </div>-->
-    <upload-media 
-          server='/api/upload'
-          error="@error('media'){{$message}}@enderror">
-        </upload-media>
+
+        
+        <upload-images
+            server='/api/upload'
+            error="@error('media'){{$message}}@enderror">
+</upload-images>
     <div>
         <select id="category_id" name="category_id" class="category">
             @foreach(\App\Models\Category::all() as $category)

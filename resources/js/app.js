@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-import { UploadMedia, UpdateMedia } from 'vue-media-upload';
+
 
 window.Vue = require('vue').default;
 
@@ -22,7 +22,7 @@ window.Vue = require('vue').default;
 
 Vue.component('profil-image', require('./components/ProfilImageComponent.vue').default);
 Vue.component('input-location', require('./components/InputLocationComponent.vue').default);
-Vue.component('upload-media' , UploadMedia);
+Vue.component('upload-images' , require('./components/UploadImagesComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
