@@ -54,9 +54,11 @@ class ProductsController extends Controller
             'new_user' => 0
         ]);*/
         
-        Product::create($data); 
+        $product = Product::create($data); 
+        $message = 'Product is toegevoegd. Bekijk je product <a href=products/' . $product->id . '> Hier </a>';
+        
 
-        session()->flash('alert-message', '<strong> Product is toegevoegd </strong>.');
+        session()->flash('alert-message', $message);
         session()->flash('alert-status', 'success');
 
 
