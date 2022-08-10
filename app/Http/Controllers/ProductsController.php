@@ -37,36 +37,19 @@ class ProductsController extends Controller
             'price' => 'required',
             'category_id' => 'required',
         ]);
-
-        /*if (request('profil_image')) {
-            $imagePath = $request->file('profil_image')->store('profiles','public');
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(150, 150);
-            $image->save();
-
-            $imageArray = ['profil_image' => $imagePath];
-        };*/
-
-      /*  $username->profile->update(array_merge(
-            $data,
-            $imageArray ?? [],
-        ));
-        
-        $username->update([
-            'new_user' => 0
-        ]);*/
         
         $product = Product::create($data); 
-
-
+        //TODO: Bind user met product
         foreach($request->media as $image){     
             $from = public_path('storage/tmp/uploads/'.$image);
             $to = public_path('storage/product_images/'.$image);
-        
             File::move($from, $to);
+
             $product->images()->create([
               'name' => $image,
             ]);
           }
+
 
         $message = 'Product is toegevoegd. Bekijk je product <a href=products/' . $product->id . '> Hier </a>';
         session()->flash('alert-message', $message);
@@ -80,7 +63,15 @@ class ProductsController extends Controller
      * 
      * Edit product
      */
+    public function edit($product_id){
+        $product = Product::where('id',$product_id)->firstOrFail();
+      //  print_r($product->location);
+        return view('products.edit', [ 'product' => $product ]);    
+    }
+    public function update(){
+        return view('welcome');    
 
+    }
     /**
      * 
      * Delete product

@@ -64,6 +64,7 @@
 </template>
 
 <script>
+//TODO: Set max limit upload to one by one scenario
     import Loader from './loader/index.vue'
     import axios from 'axios'
     export default {

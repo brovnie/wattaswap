@@ -38,6 +38,8 @@ Route::patch('/profiles/{username}/create', [App\Http\Controllers\ProfilesContro
 */
 Route::get('/products/create', [App\Http\Controllers\ProductsController::class, 'create'])->name('product.create');
 Route::post('/products/create', [App\Http\Controllers\ProductsController::class, 'store'])->name('product.store');
+Route::get('/products/{product_id}/edit', [App\Http\Controllers\ProductsController::class, 'edit'])->name('product.edit');
+Route::patch('/products/{product_id}/edit', [App\Http\Controllers\ProductsController::class, 'update'])->name('product.update');
 Route::get('/products/{product_id}', [App\Http\Controllers\ProductsController::class, 'index'])->name('product.show');
 
 /**
