@@ -24,19 +24,7 @@
             class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }} mt-3"
             autofocus>
     </div>
-    <div>
-        <!--
-    <label for="files" class="form-label mt-4">Product fotos</label>
-                <input 
-                    type="file" 
-                    name="images[]"
-                    class="form-control" 
-                    accept="image/*"
-                    multiple
-                >
-    </div>-->
-
-        
+    <div>       
         <upload-images
             server='/api/upload'
             error="@error('media'){{$message}}@enderror">

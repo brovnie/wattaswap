@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use File;
+use Illuminate\Support\Facades\Response;
 
 class ProductsController extends Controller
 {
@@ -76,4 +77,27 @@ class ProductsController extends Controller
      * 
      * Delete product
      */
+
+     /**
+      * 
+      * Search / Sort 
+      */
+      public function search( Request $request)
+      {
+        $search = $request->get('search');
+        $requestedProducts =  Product::where('title', 'like', '%'.$search.'%')
+                                        ->orWhere('description', 'like', '%'.$search.'%')
+                                        ->get();
+        if(!empty($requestedProducts)) {
+            return view('products.searchResults', [ 'requestedProducts' => $requestedProducts ]);    
+        } else {
+            session()->flash('search-message', 'Geen product gevonden');
+            session()->flash('alert-status', 'danger');
+            //TODO: return current view
+        }
+      }
+
+      public function searchResults($request) {
+        return print_r($request);
+      }
 }

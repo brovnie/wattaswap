@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="post" action="/products/create" enctype="multipart/form-data" class=" border-xl auth-card card-shadow">
+<form method="post" action="/products/{{$product->id}}/edit" enctype="multipart/form-data" class=" border-xl auth-card card-shadow">
 @csrf  
         @method('PATCH')  
 <div>
@@ -33,13 +33,16 @@
             error="@error('media'){{$message}}@enderror">
         </upload-images>
     <div>
+        <p>Category: {{$product->category->category_name}}</p>
         <select id="category_id" name="category_id" class="category">
+                
             @foreach(\App\Models\Category::all() as $category)
                 <option name="{{$category->id }}" value="{{ $category->id }}" >{{ $category->category_name }}</option>
             @endforeach
         </select>
     </div>
    <div>
+    <p>Location: {{$product->location}}</p>
     <input-location></input-location>
    </div> 
         <button type="submit" name="over" class="mt-5 btn btn--inline btn--orange w-auto ">{{__('Product toevoegen')}}</button>

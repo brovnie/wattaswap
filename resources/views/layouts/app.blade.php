@@ -22,6 +22,7 @@
 <body>
     <div id="app">
         @include('partials.navAuth')
+        @include('partials.search')
         <main class="py-4">
             @yield('content')
         </main>

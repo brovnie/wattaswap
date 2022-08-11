@@ -36,6 +36,8 @@ Route::patch('/profiles/{username}/create', [App\Http\Controllers\ProfilesContro
 /**
  *  Product 
 */
+Route::get('/products/search', [App\Http\Controllers\ProductsController::class, 'searchResults'])->name('product.searchResults');
+Route::post('/products/search', [App\Http\Controllers\ProductsController::class, 'search'])->name('product.search');
 Route::get('/products/create', [App\Http\Controllers\ProductsController::class, 'create'])->name('product.create');
 Route::post('/products/create', [App\Http\Controllers\ProductsController::class, 'store'])->name('product.store');
 Route::get('/products/{product_id}/edit', [App\Http\Controllers\ProductsController::class, 'edit'])->name('product.edit');
