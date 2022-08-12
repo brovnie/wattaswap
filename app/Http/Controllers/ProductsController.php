@@ -30,6 +30,7 @@ class ProductsController extends Controller
     }
 
     public function store( Request $request ) {
+        
         $data = request()->validate([
             'title' => 'required|max:255',
             'description' => 'required|max:255',
@@ -37,14 +38,17 @@ class ProductsController extends Controller
             'price' => 'required',
             'category_id' => 'required',
         ]);
-        
-        $product = Product::create($data); 
-        //TODO: Bind user met product
-        foreach($request->media as $image){     
-            $from = public_path('storage/tmp/uploads/'.$image);
-            $to = public_path('storage/product_images/'.$image);
-            File::move($from, $to);
 
+        //TODO: Bind user with product
+
+        $user = Auth::user()->profile;
+        $product = $user->products()->create($data);
+        
+        foreach($request->media as $image){     
+            $from = public_path("storage/tmp/uploads/" . $image);
+            $to = public_path("storage/product_images/" . $image);
+            File::move($from, $to);
+            
             $product->images()->create([
               'name' => $image,
             ]);
@@ -54,7 +58,6 @@ class ProductsController extends Controller
         $message = 'Product is toegevoegd. Bekijk je product <a href=products/' . $product->id . '> Hier </a>';
         session()->flash('alert-message', $message);
         session()->flash('alert-status', 'success');
-
 
         return redirect()->route('index');
     }
