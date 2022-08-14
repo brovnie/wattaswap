@@ -43,5 +43,8 @@ class Profile extends Model
     {
         return $this->user()->get()[0]->username;
     }
-
+    
+    public function getCategory() {
+        return $this->category()->get()->category_name;
+    }
 }

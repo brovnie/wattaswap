@@ -15,8 +15,9 @@ class ProductsController extends Controller
      * Show product
      */
     public function index($product_id) {
-        $product = Product::find($product_id);
-        return view('products.index',['product' => $product]);
+        $product = Product::find($product_id)->firstOrFail();
+        $product_imgs = Product::find($product_id)->images;
+        return view('products.index',['product' => $product, 'product_imgs' => $product_imgs]);
     }
      
 
@@ -39,8 +40,6 @@ class ProductsController extends Controller
             'category_id' => 'required',
         ]);
 
-        //TODO: Bind user with product
-
         $user = Auth::user()->profile;
         $product = $user->products()->create($data);
         
@@ -54,7 +53,6 @@ class ProductsController extends Controller
             ]);
           }
 
-
         $message = 'Product is toegevoegd. Bekijk je product <a href=products/' . $product->id . '> Hier </a>';
         session()->flash('alert-message', $message);
         session()->flash('alert-status', 'success');
@@ -67,8 +65,8 @@ class ProductsController extends Controller
      * Edit product
      */
     public function edit($product_id){
+        $user = Auth::id();
         $product = Product::where('id',$product_id)->firstOrFail();
-      //  print_r($product->location);
         return view('products.edit', [ 'product' => $product ]);    
     }
     public function update(){
@@ -87,15 +85,17 @@ class ProductsController extends Controller
       public function search( Request $request)
       {
         $search = $request->get('search');
+
         $requestedProducts =  Product::where('title', 'like', '%'.$search.'%')
                                         ->orWhere('description', 'like', '%'.$search.'%')
                                         ->get();
+       
         if(!empty($requestedProducts)) {
             return view('products.searchResults', [ 'requestedProducts' => $requestedProducts ]);    
         } else {
             session()->flash('search-message', 'Geen product gevonden');
             session()->flash('alert-status', 'danger');
-            //TODO: return current view
+            return view('products.searchResults', [ 'requestedProducts' => '' ]);    
         }
       }
 
