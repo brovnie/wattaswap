@@ -23,7 +23,7 @@ window.Vue = require('vue').default;
 Vue.component('profil-image', require('./components/ProfilImageComponent.vue').default);
 Vue.component('input-location', require('./components/InputLocationComponent.vue').default);
 Vue.component('upload-images' , require('./components/UploadImagesComponent.vue').default);
-
+Vue.component('update-images' , require('./components/UpdateImagesComponen.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

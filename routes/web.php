@@ -31,8 +31,9 @@ Auth::routes();
 Route::get('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
 Route::get('/profiles/{username}/create', [App\Http\Controllers\ProfilesController::class, 'create'])->name('profile.create');
 Route::patch('/profiles/{username}/create', [App\Http\Controllers\ProfilesController::class, 'store'])->name('profile.store');
-
-
+Route::group(['middleware' => 'auth'], function() { 
+    Route::get('/user/{user_id}', [App\Http\Controllers\ProfilesController::class, 'showDashboard'])->name('profile.dashboard');
+});
 /**
  *  Product 
 */
@@ -40,7 +41,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/products/create', [App\Http\Controllers\ProductsController::class, 'create'])->name('product.create');
     Route::post('/products/create', [App\Http\Controllers\ProductsController::class, 'store'])->name('product.store');
     Route::get('/products/{product_id}/edit', [App\Http\Controllers\ProductsController::class, 'edit'])->name('product.edit');
-    Route::patch('/products/{product_id}/edit', [App\Http\Controllers\ProductsController::class, 'update'])->name('product.update');    
+    Route::patch('/products/{product_id}', [App\Http\Controllers\ProductsController::class, 'update'])->name('product.update');    
 });
 Route::get('/products/search', [App\Http\Controllers\ProductsController::class, 'searchResults'])->name('product.searchResults');
 Route::post('/products/search', [App\Http\Controllers\ProductsController::class, 'search'])->name('product.search');

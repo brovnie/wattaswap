@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <h1>Error:{{errorMessage}}</h1>
+        
         <div class="">
             <div class="gallery width-100" :class="error?'red-border':''">
                 <Loader 
@@ -64,7 +64,6 @@
 </template>
 
 <script>
-//TODO: Set max limit upload to one by one scenario
     import Loader from './loader/index.vue'
     import axios from 'axios'
     export default {
@@ -72,30 +71,25 @@
             return{
                 media:[],
                 loading:false,
-                errorMessage:'',
             }
         },
         methods:{
             async fileChange(event){
-                this.loading=true;
-                let files = event.target.files;
+                this.loading=true
+                let files = event.target.files
                 if(files.length <= this.maxUpload){
-                
                 for(var i=0; i < files.length; i++){
-
-                    let formData = new FormData;
-                    let url = URL.createObjectURL(files[i]);
-                    formData.set('image', files[i]);
-                    const {data} = await axios.post(this.server, formData);
+                    let formData = new FormData
+                    let url = URL.createObjectURL(files[i])
+                    formData.set('image', files[i])
+                    const {data} = await axios.post(this.server, formData)
                         
                     this.media.push({url:url, name:data.name, size:files[i].size, type:files[i].type});
                 }
+               
+                  }
                 this.loading=false
                 this.media_emit()
-                } else {
-                      this.loading=false;
-                    return this.errorMessage = 'Te veel images toegevoegd';
-                }
             },
             remove(index){
                 this.media.splice(index,1)
@@ -106,8 +100,7 @@
             }
         },
         mounted() {
-            this.$emit('media',this.media)
-
+            this.$emit('media',this.media);
         },
         props:{
             error:'',
@@ -115,7 +108,7 @@
                 type: String,
                 default: '/api/upload',
             },
-            maxUpload:{
+            maxUpload: {
                 default: 5,
             },
         },

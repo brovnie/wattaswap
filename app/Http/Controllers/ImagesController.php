@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Images;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ImagesController extends Controller
 {
@@ -24,5 +25,11 @@ class ImagesController extends Controller
         $file->move($path, $name);
       
         return ['name'=>$name];
+      }
+
+      public function getImages($product_id){
+        $product = Product::find($product_id)->firstOrFail();
+        $images = $product->images;
+        return ['media'=>$images];
       }
 }

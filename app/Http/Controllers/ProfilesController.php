@@ -14,6 +14,15 @@ class ProfilesController extends Controller
         return view('profiles.index',['user' => $user]);
     }
 
+    public function showDashboard($user) {
+        if(Auth::id() == $user) {
+            $profile = Profile::where('user_id',$user)->firstOrFail();
+            return view('profiles.dashboard',['user' => $user]);
+        }
+        return view('welcome');
+
+    }
+
     /**
     *
     * Create Profile
