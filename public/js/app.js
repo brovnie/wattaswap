@@ -5278,8 +5278,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['location'],
   data: function data() {
     return {
       cities: {}
@@ -5297,6 +5300,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getCity();
+    console.log(this.location);
   }
 });
 
@@ -29753,6 +29757,23 @@ var render = function () {
       { attrs: { id: "location", name: "location" } },
       [
         _c("option", { attrs: { disabled: "" } }, [_vm._v("Kies een stad")]),
+        _vm._v(" "),
+        _vm.location
+          ? _c(
+              "option",
+              {
+                attrs: { disable: "", name: _vm.location },
+                domProps: { value: _vm.location },
+              },
+              [_vm._v(_vm._s(_vm.location))]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.location
+          ? _c("option", { attrs: { disable: "" } }, [
+              _vm._v("------------------"),
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _vm._l(_vm.cities, function (city) {
           return _c(

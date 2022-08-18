@@ -34,7 +34,7 @@
             error="@error('media'){{$message}}@enderror"
             media_file_path='/storage/product_images'
             media_server="/api/media/{{$product->id}}" 
-            error="@error('media'){{$message}}@enderror"
+            
             >
         </update-images>
     <div>
@@ -48,6 +48,8 @@
     </p>
 
         <select id="category_id" name="category_id" class="category">
+            <option name="{{$product->category->id}}" value="{{$product->category->id}}">{{$product->category->category_name}}</option>
+            <option disabled> ------------------------- </option>
             @foreach(\App\Models\Category::all() as $cat)
                 <option name="{{$cat->id }}" value="{{ $cat->id }}" >{{ $cat->category_name }}</option>
             @endforeach
@@ -61,7 +63,7 @@
             </svg>
         </span>
     </p>
-    <input-location></input-location>
+    <input-location location="{{$product->location}}"></input-location>
    </div> 
         <button type="submit" name="over" class="mt-5 btn btn--inline btn--orange w-auto ">{{__('Product toevoegen')}}</button>
 </form>
